@@ -11,7 +11,7 @@ const About = () => {
             <div className="bg-zinc-100 rounded-2xl shadow-xl overflow-hidden">
               <div className="p-8 sm:p-12">
                 <h1 className="text-6xl font-bold text-gray-900 mb-8 text-center">
-                  About <span className="text-blue-800">FOREVER</span>
+                  About <span className="text-blue-800">ZOOSKO</span>
                 </h1>
 
                 <div className="grid md:grid-cols-2 gap-11 mb-12">
@@ -19,7 +19,7 @@ const About = () => {
                     <p className="text-lg text-gray-700 leading-relaxed">
                       Welcome to{" "}
                       <span className="font-semibold text-blue-800">
-                        FOREVER
+                        ZOOSKO
                       </span>
                       ! Here, we believe that shopping should be an enjoyable
                       and seamless experience. Our mission is to bring you the

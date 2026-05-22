@@ -184,7 +184,7 @@ const Contact = () => {
                     <h3 className="text-lg font-semibold text-gray-800">
                       Phone
                     </h3>
-                    <p className="text-gray-600">+1 (555) 123-4567</p>
+                    <p className="text-gray-600">+91 123456789</p>
                   </div>
                 </div>
               </div>
@@ -210,7 +210,7 @@ const Contact = () => {
                     <h3 className="text-lg font-semibold text-gray-800">
                       Email
                     </h3>
-                    <p className="text-gray-600">support@company.com</p>
+                    <p className="text-gray-600">support@zoosko.com</p>
                   </div>
                 </div>
               </div>
@@ -242,7 +242,7 @@ const Contact = () => {
                     <h3 className="text-lg font-semibold text-gray-800">
                       Location
                     </h3>
-                    <p className="text-gray-600">123 Business Ave, Suite 100</p>
+                    <p className="text-gray-600">Zoosko co.</p>
                   </div>
                 </div>
               </div>

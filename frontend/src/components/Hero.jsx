@@ -5,7 +5,6 @@ import { assets } from "../assets/assets";
 const Hero = () => {
   return (
     <div className="relative flex flex-col sm:flex-row min-h-[600px] bg-gray-50 overflow-hidden">
-      {/* Hero Left Side */}
       <div className="w-full sm:w-1/2 flex items-center justify-center py-16 px-6 z-10">
         <div className="text-[#414141] max-w-lg space-y-6">
           <div className="flex items-center gap-4">

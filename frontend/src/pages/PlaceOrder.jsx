@@ -12,7 +12,7 @@ const PlaceOrder = () => {
     state: "",
     zipcode: "",
     phone: "",
-    email: "", // Added email field
+    email: "", // 
   });
 
   const navigate = useNavigate();
@@ -27,7 +27,7 @@ const PlaceOrder = () => {
   };
 
 const handleCheckout = () => {
-  // Validate form data
+  
   const requiredFields = [
     "firstName",
     "lastName",
@@ -53,19 +53,16 @@ const handleCheckout = () => {
     return;
   }
 
-  // Save order details to localStorage
   const orderDetails = {
     email: formData.email,
-    orderNumber: Math.floor(Math.random() * 1000000), // Example order number
-    totalAmount: 100, // Example total amount
-    items: [], // Populate with actual items
+    orderNumber: Math.floor(Math.random() * 1000000), 
+    totalAmount: 100, 
+    items: [], 
   };
   localStorage.setItem("orderDetails", JSON.stringify(orderDetails));
 
-  // Proceed with checkout
   console.log("Checkout with data:", { ...formData, paymentMethod: method });
 
-  // Redirect to the order confirmation page
   navigate("/order-confirmed");
 };
   return (
@@ -171,7 +168,7 @@ const handleCheckout = () => {
             </ h2>
             <div className="grid sm:grid-cols-3 gap-4">
               {[
-                { id: "stripe", label: "Stripe", logo: assets.stripe_logo },
+                // { id: "stripe", label: "Stripe", logo: assets.stripe_logo },
                 { id: "cod", label: "Cash on Delivery" },
               ].map((option) => (
                 <div

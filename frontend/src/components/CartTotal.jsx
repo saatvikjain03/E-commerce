@@ -1,16 +1,19 @@
 import { useContext } from "react";
 import Title from "./Title";
 import { ShopContext } from "../context/Shopcontext";
+
 const CartTotal = () => {
   const { currency, delivery_fee, getCartAmount } = useContext(ShopContext);
 
-  // Get the subtotal and calculate the total
   const subtotal = getCartAmount();
-  const total = subtotal + delivery_fee;
 
-  // Function to format the currency value
+  // Make shipping free if subtotal > 1000
+  const shippingFee = subtotal >= 1000 ? 0 : delivery_fee;
+
+  const total = subtotal + shippingFee;
+
   const formatCurrency = (amount) => {
-    return `${currency} ${amount.toFixed(2)}`; // Ensure two decimal places
+    return `${currency} ${amount.toFixed(2)}`;
   };
 
   return (
@@ -24,12 +27,24 @@ const CartTotal = () => {
           <p>Subtotal</p>
           <p>{formatCurrency(subtotal)}</p>
         </div>
+
         <hr />
-        <div className="flex justify-between">
-          <p>Shipping Fee</p>
-          <p>{formatCurrency(delivery_fee)}</p>
+
+        <div>
+          <div className="flex justify-between">
+            <p>Shipping Fee</p>
+            <p>{formatCurrency(shippingFee)}</p>
+          </div>
+
+          {subtotal >= 1000 && (
+            <p className="text-green-600 text-xs mt-1">
+              Free Shipping Applied!
+            </p>
+          )}
         </div>
+
         <hr />
+
         <div className="flex justify-between">
           <b>Total</b>
           <b>{formatCurrency(total)}</b>

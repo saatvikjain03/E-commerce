@@ -9,12 +9,12 @@ import { useNavigate } from "react-router-dom";
 export const ShopContext = createContext();
 
 const ShopContextProvider = (props) => {
-  const currency = "$";
-  const delivery_fee = 10;
+  const currency = "₹";
+  const delivery_fee = 50;
   const [cartItems, setCartItems] = useState({});
   const navigate = useNavigate();
 
-  const deepClone = (obj) => JSON.parse(JSON.stringify(obj)); // Deep clone utility
+  const deepClone = (obj) => JSON.parse(JSON.stringify(obj)); 
 
   // Load saved cart from localStorage on initial render
   useEffect(() => {
@@ -119,7 +119,7 @@ const ShopContextProvider = (props) => {
     getCartCount,
     updateQuantity,
     getCartAmount,
-    removeFromCart, // Expose removeFromCart to the rest of the app
+    removeFromCart, 
     navigate,
   };
 

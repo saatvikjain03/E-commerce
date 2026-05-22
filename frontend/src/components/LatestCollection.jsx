@@ -8,22 +8,20 @@ const LatestCollection = () => {
   const { products } = useContext(ShopContext);
   const [latestProducts, setLatestProducts] = useState([]);
   const [visibleProducts, setVisibleProducts] = useState(10);
-  const [searchQuery, setSearchQuery] = useState(""); // State for the search query
+  const [searchQuery, setSearchQuery] = useState(""); 
 
   useEffect(() => {
-    // Sort products by date or ID to ensure truly latest products
+ 
     const sortedProducts = [...products].sort(
       (a, b) => new Date(b.createdAt || b._id) - new Date(a.createdAt || a._id)
     );
     
-    // Filter products based on the search query
     const filteredProducts = sortedProducts.filter((product) =>
-      product.name.toLowerCase().includes(searchQuery.toLowerCase()) // Case insensitive search
+      product.name.toLowerCase().includes(searchQuery.toLowerCase()) 
     );
 
-    // Set the filtered products based on the visibleProducts count
     setLatestProducts(filteredProducts.slice(0, visibleProducts));
-  }, [products, visibleProducts, searchQuery]); // Add searchQuery as a dependency
+  }, [products, visibleProducts, searchQuery]); 
 
   const handleLoadMore = () => {
     setVisibleProducts((prev) => prev + 5);
@@ -38,14 +36,13 @@ const LatestCollection = () => {
         </p>
       </div>
 
-      {/* Search Bar */}
       <div className="text-center mb-6">
         <input
           type="text"
           placeholder="Search by product name..."
           className="w-full max-w-sm px-4 py-2 border rounded-md text-sm"
           value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)} // Update searchQuery state on change
+          onChange={(e) => setSearchQuery(e.target.value)} 
         />
       </div>
 

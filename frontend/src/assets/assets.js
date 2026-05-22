@@ -55,7 +55,7 @@ import p_img51 from "../assets/p_img51.png";
 import p_img52 from "../assets/p_img52.png";
 
 import logo from "../assets/logo.png";
-import hero_img from "../assets/hero_img.png";
+import hero_img from "../assets/hero_img.webp";
 import cart_icon from "../assets/cart.png";
 import bin_icon from "../assets/bin_icon.png";
 import dropdown_icon from "../assets/dropdown_icon.png";
@@ -72,7 +72,6 @@ import contact_img from "../assets/contact_img.png";
 import razorpay_logo from "../assets/razorpay_logo.png";
 import stripe_logo from "../assets/stripe_logo.png";
 import cross_icon from "../assets/cross_icon.png";
-
 
 export const assets = {
   logo,

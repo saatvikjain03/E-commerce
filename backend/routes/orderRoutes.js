@@ -3,7 +3,6 @@ const nodemailer = require("nodemailer");
 const router = express.Router();
 require("dotenv").config();
 
-// Configure Nodemailer
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
@@ -12,7 +11,6 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-// POST route to send order confirmation email
 router.post("/", async (req, res) => {
   const { email, orderNumber, totalAmount, items } = req.body;
 
@@ -28,14 +26,8 @@ router.post("/", async (req, res) => {
     from: `"ZOOSKO" <${process.env.EMAIL_USER}>`,
     to: email,
     subject: "Order Confirmation",
-    html: `
-      <h1>Thank you for your order!</h1>
-      <p>Your order number is: <strong>${orderNumber}</strong></p>
-      <p>Total Amount: <strong>$${totalAmount}</strong></p>
-      <h2>Items:</h2>
-      <ul>${itemList}</ul>
-      <p>We appreciate your business!</p>
-    `,
+    text: `Thank you for ordering on ZOOSKO! We'll keep you updated with your order.`,
+    html: `<h1>Thank you for ordering on ZOOSKO!</h1><p>We'll keep you updated with the your order.</p>`,
   };
 
   try {
