@@ -1,10 +1,10 @@
 const express = require("express");
-const mongoose = require("mongoose");
+// mongoose removed: using Prisma (Postgres/Neon) instead
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const middleware = require("./middlewares/middleware");
 const { connectDb } = require("./config/db");
-const Contact = require("./models/contact");
+const prisma = require("./prismaClient");
 const subscribeRouter = require("./routes/subscription");
 const orderRoutes = require("./routes/orderRoutes");
 const userRoutes = require("./routes/userRoutes")
@@ -20,7 +20,7 @@ const PORT = process.env.PORT || 5000;
 app.use(express.json());
 app.use(
   cors({
-    origin: "http://localhost:5173", 
+    origin: process.env.FRONTEND_URL || "http://localhost:5173", 
     methods: ["GET", "POST"],
   })
 );
@@ -39,8 +39,7 @@ app.use("/api/subscribe", subscribeRouter);
 app.post("/api/contact", async (req, res) => {
   const { name, email, message } = req.body;
   try {
-    const newContact = new Contact({ name, email, message });
-    await newContact.save();
+    await prisma.contact.create({ data: { name, email, message } });
     console.log("Received contact form submission:", { name, email, message });
     res.status(200).json({ message: "Form submitted successfully!" });
   } catch (error) {

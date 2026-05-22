@@ -1,6 +1,6 @@
 const asyncHandler = require("express-async-handler");
 const bcrypt = require("bcrypt");
-const User = require("../models/user");
+const prisma = require("../prismaClient");
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
 
@@ -15,7 +15,7 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 
   // Check if user already exists
-  const userExists = await User.findOne({ email });
+  const userExists = await prisma.user.findUnique({ where: { email } });
   if (userExists) {
     return res.status(400).json({ message: "User already exists" });
   }
@@ -24,12 +24,14 @@ const registerUser = asyncHandler(async (req, res) => {
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(password, salt);
 
-  // Create a new user
-  const newUser = await User.create({
-    username,
-    email,
-    phone,
-    password: hashedPassword,
+  // Create a new user (Prisma)
+  const newUser = await prisma.user.create({
+    data: {
+      username,
+      email,
+      phone,
+      password: hashedPassword,
+    },
   });
 
   // Send success response
@@ -54,8 +56,8 @@ const loginUser = asyncHandler(async (req, res) => {
       .json({ message: "Please provide both email and password" });
   }
 
-  // Find the user by email
-  const user = await User.findOne({ email });
+  // Find the user by email (Prisma)
+  const user = await prisma.user.findUnique({ where: { email } });
   if (!user) {
     return res.status(401).json({ message: "Invalid credentials" });
   }
@@ -68,7 +70,7 @@ const loginUser = asyncHandler(async (req, res) => {
 
   // Generate JWT token
   const token = jwt.sign(
-    { id: user._id, email: user.email },
+    { id: user.id, email: user.email },
     process.env.JWT_SECRET,
     { expiresIn: "1h" }
   );
