@@ -5,12 +5,13 @@ import { AlertCircle, CheckCircle } from "lucide-react";
 const Footer = () => {
   const [email, setEmail] = useState("");
   const [subscriptionStatus, setSubscriptionStatus] = useState(null);
+  const API = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
   const handleSubscribe = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:5000/api/subscribe", {
+      const response = await fetch(`${API}/api/subscribe`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

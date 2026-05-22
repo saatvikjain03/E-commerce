@@ -13,6 +13,7 @@ const SigninSignUp = ({ setIsAuthenticated }) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const navigate = useNavigate();
+  const API = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -26,13 +27,13 @@ const SigninSignUp = ({ setIsAuthenticated }) => {
     try {
       let response;
       if (isSignUp) {
-      response = await axios.post("http://localhost:5000/api/user/signup", data);
+      response = await axios.post(`${API}/api/user/signup`, data);
         if (response.data.success) {
           alert("SignUp successful!");
           navigate("/");
         }
       } else {
-        response = await axios.post("http://localhost:5000/api/user/login", {
+        response = await axios.post(`${API}/api/user/login`, {
           email,
           password,
         });

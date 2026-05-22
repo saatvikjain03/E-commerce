@@ -14,7 +14,8 @@ const OrderConfirmed = () => {
     const sendConfirmationEmail = async () => {
       try {
         if (storedOrderDetails) {
-          await axios.post("/api/orders/confirm", {
+          const API = import.meta.env.VITE_API_URL || "http://localhost:5000";
+          await axios.post(`${API}/api/orders/confirm`, {
             email: storedOrderDetails.email,
             orderNumber: storedOrderDetails.orderNumber,
             totalAmount: storedOrderDetails.totalAmount,
